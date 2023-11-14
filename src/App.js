@@ -3,19 +3,30 @@ import "./App.css";
 import Nav from "./views/Nav";
 
 const App = () => {
-  let name = "Truong";
-  let age = 21;
-  let obj = { name: "Truong", age: "21" };
+  const handleEventClick = (event) => {
+    console.log("click me", event.target.value);
+  };
   return (
     <>
       <div className="App">
         <Nav />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h3>
-            Hello {obj.name} - {obj.age}
-          </h3>
-          <p>{JSON.stringify(obj)}</p>
+          <input
+            type="text"
+            value="Truong"
+            onClick={(event) => {
+              handleEventClick(event);
+            }}
+          />
+          <button
+            type="button"
+            onClick={(event) => {
+              handleEventClick(event);
+            }}
+          >
+            click me
+          </button>
         </header>
       </div>
     </>
