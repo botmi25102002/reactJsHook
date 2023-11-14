@@ -1,10 +1,17 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Nav from "./views/Nav";
+import { useState } from "react";
 
 const App = () => {
+  let [name, setName] = useState("Truong");
+  const [address, setAddress] = useState("");
+
+  const handleOnchangeInput = (event) => {
+    setAddress(event.target.value);
+  };
   const handleEventClick = (event) => {
-    console.log("click me", event.target.value);
+    setName(address); //hàm setName bị bất đồng bộ.
   };
   return (
     <>
@@ -12,12 +19,11 @@ const App = () => {
         <Nav />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+          <p>Hello {name}</p>
           <input
             type="text"
-            value="Truong"
-            onClick={(event) => {
-              handleEventClick(event);
-            }}
+            value={address}
+            onChange={(event) => handleOnchangeInput(event)}
           />
           <button
             type="button"
