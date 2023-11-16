@@ -8,8 +8,10 @@ const App = () => {
   let [name, setName] = useState("Truong");
   const [address, setAddress] = useState("");
   const [todos, setTodos] = useState([
-    { id: "todo1", title: "Wake up at 6 a.m" },
-    { id: "todo2", title: "Play badminton" },
+    { id: "todo1", title: "Wake up at 6 a.m", type: "T" },
+    { id: "todo2", title: "Play badminton", type: "T" },
+    { id: "todo3", title: "Play game", type: "R" },
+    { id: "todo4", title: "Read books", type: "R" },
   ]);
 
   const handleOnchangeInput = (event) => {
@@ -32,12 +34,18 @@ const App = () => {
   // =>> map(giống với for-each): trả ra 1 array mới mà ko ảnh hưởng tới dữ liệu cũ.
   return (
     <>
+
       <div className="App">
-        <Nav />
+
         <header className="App-header">
+          <Nav />
           <img src={logo} className="App-logo" alt="logo" />
           <p>Hello {name}</p>
-          <Todo todos={todos} />
+          <Todo todos={todos} title={"All todo"} />
+
+          {/* hàm filter trả về 1 array sau khi đã kiểm tra điều kiện */}
+
+          <Todo todos={todos.filter(item => item.type === "T")} title={`T's title`} />
           <input
             type="text"
             value={address}
