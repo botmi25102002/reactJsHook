@@ -24,10 +24,14 @@ const App = () => {
       alert("Please enter address");
       return;
     }
-    let newTodo = { id: "abc", title: address };
+    let newTodo = { id: Math.floor((Math.random() * 10000) + 1), title: address };
     setTodos([...todos, newTodo]); //hàm setName bị bất đồng bộ.
     setAddress("");
   };
+  const deleteDataTodo = (id) => {
+    let currentTodo = todos.filter(item => item.id != id)
+    setTodos(currentTodo);
+  }
 
   //for: lặp theo index.
   // for-each: lặp theo phần tử, đối tượng ở bên trong.
@@ -41,11 +45,10 @@ const App = () => {
           <Nav />
           <img src={logo} className="App-logo" alt="logo" />
           <p>Hello {name}</p>
-          <Todo todos={todos} title={"All todo"} />
+          <Todo todos={todos} title={"All todo"} deleteDataTodo={deleteDataTodo} />
 
           {/* hàm filter trả về 1 array sau khi đã kiểm tra điều kiện */}
-
-          <Todo todos={todos.filter(item => item.type === "T")} title={`T's title`} />
+          <Todo todos={todos.filter(item => item.type === "T")} title={`T's title`} deleteDataTodo={deleteDataTodo} />
           <input
             type="text"
             value={address}
